@@ -58,23 +58,35 @@
 ### `search_listings`
 
 - **What it does:**
+  It searches the local clothing catalogue by description keywords with optional size and maximum-price filters and size matches uses whole tokens.
 - **Inputs:** <!-- name and type each: `max_price` (float), not "a price" -->
+  description: str, size: str | None = None, max_price: float | None = None.
 - **Returns:**
+  A list of matching listing dictionaries, ranked by keyword match; each includes fields such as title, price, size, and platform.
 - **When it has nothing:**
+  Returns an empty list [], not None or an exception
 
 ### `suggest_outfit`
 
 - **What it does:**
+  It suggests two outfits built around a selected listing, using items from the user’s wardrobe when available.
 - **Inputs:**
+  new_item: dict (a listing), wardrobe: dict (with an items list)
 - **Returns:**
+  A non-empty str with two outfit suggestions; when the wardrobe has items, it names those pieces as written.
 - **When it has nothing:**
+  Still returns general outfit ideas and says they are general because no wardrobe is saved.
 
 ### `create_fit_card`
 
 - **What it does:**
+  Writes a short social-media-style caption about the selected second-hand find and how it could be worn.
 - **Inputs:**
+  outfit: str, new_item: dict (a listing)
 - **Returns:**
+  A str of two to four sentences that includes the item, the price written with digits, and the selling platform.
 - **When it has nothing:**
+  If outfit is empty or whitespace, returns a helpful fallback message instead of calling the model or raising an exception.
 
 ---
 
@@ -92,7 +104,7 @@
      function have to be real. -->
 
 **Branch rule:**
-
+If search_listings returns an empty list, put "No listings available" and stop. Otherwise, take the first object and go to suggest_outfit.
 **Where it lives:** `agent.py::run_agent`
 
 **How the query is parsed:** <!-- regex, string splitting, or asking the model — say which -->
