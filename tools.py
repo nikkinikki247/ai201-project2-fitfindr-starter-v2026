@@ -79,7 +79,22 @@ def search_listings(
         python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
     """
     # TODO: replace this with your implementation
-    return []
+    listings = load_listings()
+    filtered_listings = []
+
+    for listing in listings:
+        if max_price is not None and listing['price'] > max_price:
+            continue
+        if size is not None and size.lower() not in listing['size'].lower():
+            continue
+        
+        score = sum(word in listing['title'].lower() or word in listing['description'].lower() for word in description.lower().split())
+        if score > 0:
+            listing['score'] = score
+            filtered_listings.append(listing)
+
+    filtered_listings.sort(key=lambda x: x['score'], reverse=True)
+    return filtered_listings[:config.SEARCH_RESULT_LIMIT]
 
 
 # ── Tool 2: suggest_outfit ────────────────────────────────────────────────────
@@ -112,8 +127,15 @@ def suggest_outfit(new_item: dict, wardrobe: dict) -> str:
     Test it from a terminal before you move on:
         python -c "from tools import suggest_outfit; from utils.data_loader import get_example_wardrobe, load_listings; print(suggest_outfit(load_listings()[0], get_example_wardrobe()))"
     """
-    # TODO: replace this with your implementation
-    return ""
+    # TODO:
+    if not wardrobe['items']:
+        prompt = f"Give me some general styling ideas for a {new_item['title']}."
+    else:
+        wardrobe_items = ', '.join(item['title'] for item in wardrobe['items'] if 'title' in item)
+        prompt = f"Suggest outfits for a {new_item['title']} with these items: {wardrobe_items}."
+
+    return generate(prompt)
+    # return ""
 
 
 # ── Tool 3: create_fit_card ───────────────────────────────────────────────────
@@ -153,4 +175,10 @@ def create_fit_card(outfit: str, new_item: dict) -> str:
         python -c "from tools import create_fit_card; from utils.data_loader import load_listings; print(create_fit_card('jeans and white sneakers', load_listings()[0]))"
     """
     # TODO: replace this with your implementation
-    return ""
+    if not outfit.strip():
+        return "This outfit suggestion is currently unavailable."
+
+    prompt = f"Check out this outfit featuring a {new_item['title']} priced at ${new_item['price']} on {new_item['platform']}. The vibe is {outfit}. Let's make a statement!"
+    
+    return generate(prompt)
+    # return ""

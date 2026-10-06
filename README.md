@@ -123,7 +123,7 @@ If search_listings returns an empty list, put "No listings available" and stop. 
 **One full query**
 
 ```
-$ python app.py ask '...'
+$ python app.py ask ''
 
 ```
 
@@ -132,19 +132,67 @@ $ python app.py ask '...'
 ```
 $ python -c "from tools import search_listings; print(search_listings('graphic tee', max_price=30))"
 
-```
-
-```
-$ python -c "from tools import suggest_outfit; ..."
+[{'id': 'lst_002', 'title': 'Y2K Baby Tee — Butterfly Print', 'description': 'Super cute early 2000s baby tee with butterfly graphic. Fitted crop length. Tag says medium but fits like a small.', 'category': 'tops', 'style_tags': ['y2k', 'vintage', 'graphic tee', 'cottagecore'], 'size': 'S/M', 'condition': 'excellent', 'price': 18.0, 'colors': ['white', 'pink', 'purple'], 'brand': None, 'platform': 'depop', 'score': 2}, {'id': 'lst_006', 'title': 'Graphic Tee — 2003 Tour Bootleg Style', 'description': 'Vintage-style bootleg tee with faded graphic. Slightly boxy fit. 100% cotton, soft and worn-in.', 'category': 'tops', 'style_tags': ['graphic tee', 'vintage', 'grunge', 'streetwear', 'band tee'], 'size': 'L', 'condition': 'good', 'price': 24.0, 'colors': ['black'], 'brand': None, 'platform': 'depop', 'score': 2}, {'id': 'lst_017', 'title': 'Mesh Long-Sleeve Top — Black', 'description': 'Sheer black mesh long-sleeve. Great for layering under a graphic tee or over a bralette. Stretchy material, fits true to size.', 'category': 'tops', 'style_tags': ['y2k', 'grunge', 'goth', 'layering'], 'size': 'S/M', 'condition': 'excellent', 'price': 15.0, 'colors': ['black'], 'brand': None, 'platform': 'depop', 'score': 2}, {'id': 'lst_033', 'title': 'Vintage Band Tee — Faded Grey', 'description': 'Faded grey band-style tee with distressed graphic. Crew neck. Fits boxy. Well-loved but no holes or major damage.', 'category': 'tops', 'style_tags': ['vintage', 'grunge', 'band tee', 'graphic tee', 'streetwear'], 'size': 'L', 'condition': 'fair', 'price': 19.0, 'colors': ['grey', 'charcoal'], 'brand': None, 'platform': 'depop', 'score': 2}, {'id': 'lst_011', 'title': 'Low-Rise Cargo Pants — Khaki', 'description': 'Y2K era low-rise cargo pants. Lots of pockets. Khaki color, slightly distressed at the hems. Great for layering with a long tee.', 'category': 'bottoms', 'style_tags': ['y2k', 'cargo', '2000s', 'streetwear'], 'size': 'W29', 'condition': 'fair', 'price': 27.0, 'colors': ['khaki', 'tan'], 'brand': None, 'platform': 'poshmark', 'score': 1}, {'id': 'lst_012', 'title': 'Oversized Crewneck Sweatshirt — Vintage Navy', 'description': 'Perfectly faded navy crewneck. Genuinely vintage — not manufactured distressed. Ribbed cuffs and hem. No graphics, clean.', 'category': 'tops', 'style_tags': ['vintage', 'basics', 'oversized', 'classic'], 'size': 'XL (fits oversized)', 'condition': 'good', 'price': 20.0, 'colors': ['navy'], 'brand': None, 'platform': 'thredUp', 'score': 1}, {'id': 'lst_015', 'title': 'Vintage Graphic Hoodie — Faded Black', 'description': 'Faded black pullover hoodie with barely-visible vintage graphic on the chest. Cozy interior. Some pilling but adds to the worn-in look.', 'category': 'tops', 'style_tags': ['vintage', 'grunge', 'graphic', 'streetwear'], 'size': 'L', 'condition': 'fair', 'price': 26.0, 'colors': ['black', 'charcoal'], 'brand': None, 'platform': 'depop', 'score': 1}]
 
 ```
 
 ```
-$ python -c "from tools import create_fit_card; ..."
+$ python -c "from tools import suggest_outfit; from utils.data_loader import get_example_wardrobe, load_listings; print(suggest_outfit(load_listings()[0], get_example_wardrobe()))"
 
-```
+It looks like you forgot to list the items you want to pair with your Vintage Levi's 501s!
+
+However, since Vintage Levi's 501s in a medium wash are the ultimate wardrobe chameleon (timeless, classic, and endlessly versatile), I can still give you some killer outfit formulas based on common wardrobe staples.
+
+If you reply with your specific items, I will customize these for you! In the meantime, here are a few foolproof ways to style them:
+
+### 1. The Off-Duty Model (Casual & Cool)
+
+- **Top:** A crisp white t-shirt (tucked in) or a grey heather crewneck sweatshirt.
+- **Layer:** An oversized black leather biker jacket or a vintage canvas chore coat.
+- **Shoes:** Retro sneakers (like Nike Killshots, Adidas Sambas, or Converse High Tops).
+- **Accessories:** A black leather belt with a simple silver buckle and a canvas tote bag.
+
+### 2. French Girl Chic (Effortless & Polished)
+
+- **Top:** A black-and-white striped long-sleeve tee (breton stripe) or a fitted black bodysuit.
+- **Layer:** A tailored blazer in navy, houndstooth, or beige.
+- **Shoes:** Classic loafers or pointed-toe black ankle boots.
+- **Accessories:** Gold hoop earrings, a structured leather handbag, and maybe a silk scarf tied around the neck or bag handle.
+
+### 3. Americana / Western Vibe (Rugged & Heritage)
+
+- **Top:** A vintage band t-shirt or a chambray/denim button-down (denim-on-denim, just make sure the washes are different).
+- **Layer:** A brown suede jacket or a flannel shirt worn unbuttoned.
+- **Shoes:** Brown leather cowboy boots or rugged work boots (like Blundstones or Red Wings).
+- **Accessories:** A cognac brown leather belt with a statement western buckle.
+
+### 4. Elevated Casual (Date Night / Drinks)
+
+- **Top:** A sleek silk camisole (black, emerald, or champagne) or a corset-style top.
+- **Layer:** An oversized blazer or a trench coat.
+- **Shoes:** Strappy heels or sleek kitten-heel mules.
+- **Accessories:** Statement earrings, a small shoulder bag, and layered gold necklaces.
 
 ---
+
+**Want specific recommendations?** Just reply with the list of items you have on hand, and tell me a bit about the occasion or your personal style!
+```
+
+```
+$ python -c "from tools import create_fit_card; from utils.data_loader import load_listings; print(create_fit_card('jeans and white sneakers', load_listings()[0]))"
+
+That is a timeless, unbeatable combo! You literally cannot go wrong with vintage 501s and fresh white sneakers—it's the ultimate effortless streetwear uniform.
+
+At $38, that’s a solid steal for vintage Levi's (especially if they're broken-in just right).
+
+Since you're looking to **make a statement**, how do you want to style the top half? Here are a few ways to elevate that vibe, depending on your mood:
+
+1. **The Model-Off-Duty Look:** A oversized, cropped graphic tee (think vintage band merch or sports) with a little shoulder bag and silver hoops.
+2. **Elevated Casual:** A crisp, oversized button-down shirt worn open over a ribbed white tank, layered with some chunky gold jewelry and a baseball cap.
+3. **Edgy & Cool:** A fitted black baby tee, a vintage leather jacket thrown over the shoulders, and maybe some chunky sunglasses.
+
+## What kind of top are you thinking of pairing with them?
+```
 
 ## How I Used AI
 
