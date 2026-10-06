@@ -204,16 +204,10 @@ Since you're looking to **make a statement**, how do you want to style the top h
      instead of an empty list, so I changed it" is the level we want. -->
 
 **Moment 1**
-
-- _What I asked for:_
-- _What came back:_
-- _What I changed:_
+I used GitHub Copilot to write the suggest_outfit function. It wrote the code, and I added an additional check to a function it was using to check if the title existed in the items.
 
 **Moment 2**
-
-- _What I asked for:_
-- _What came back:_
-- _What I changed:_
+Also, I used GitHub Copilot to write run_agent(). I asked the agent to implement the branch rule to my code. It wrote the code, and I didn't change anything.
 
 <!-- ═══════════════════════ UNIT 4 — THE TEST ═══════════════════════=
 
