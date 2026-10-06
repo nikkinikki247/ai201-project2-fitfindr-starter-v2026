@@ -106,10 +106,43 @@ def run_agent(query: str, wardrobe: dict) -> dict:
         than a stack trace. The import is already at the top of this file.
     """
     session = new_session(query, wardrobe)
+    count = 0
+
+    while True:
+        count += 1
+        trace.check_iterations(count)
+
+        # Parse the query
+        # (Assuming a simple split for demonstration; adjust as needed)
+        description, size, max_price = query.split(" under ")
+        max_price = int(max_price.split()[0])  # Extracting the price
+        session["parsed"] = {
+            "description": description,
+            "size": size,
+            "max_price": max_price
+        }
+
+        # Call search_listings
+        session["search_results"] = search_listings(session["parsed"])
+
+        if not session["search_results"]:
+            session["error"] = "No listings available. Please try a different query."
+            return session
+
+        # Select the first item
+        session["selected_item"] = session["search_results"][0]
+
+        # Call suggest_outfit
+        session["outfit_suggestion"] = suggest_outfit(session["selected_item"], wardrobe)
+
+        # Call create_fit_card
+        session["fit_card"] = create_fit_card(session["outfit_suggestion"], session["selected_item"])
+
+        return session
 
     # TODO: delete these two lines and build the loop.
-    session["error"] = "The planning loop isn't built yet — see the TODO in agent.py."
-    return session
+    # session["error"] = "The planning loop isn't built yet — see the TODO in agent.py."
+    # return session
 
 
 # ── running it directly ───────────────────────────────────────────────────────
