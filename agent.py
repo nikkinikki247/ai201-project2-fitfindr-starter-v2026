@@ -114,16 +114,21 @@ def run_agent(query: str, wardrobe: dict) -> dict:
 
         # Parse the query
         # (Assuming a simple split for demonstration; adjust as needed)
-        description, size, max_price = query.split(" under ")
-        max_price = int(max_price.split()[0])  # Extracting the price
+        # description, size, max_price = query.split(" under ")
+        # max_price = int(max_price.split()[0])  # Extracting the price
+        # session["parsed"] = {
+        #     "description": description,
+        #     "size": size,
+        #     "max_price": max_price
+        # }
         session["parsed"] = {
-            "description": description,
-            "size": size,
-            "max_price": max_price
+            "description": query,
+            "size": None,
+            "max_price": None
         }
 
         # Call search_listings
-        session["search_results"] = search_listings(session["parsed"])
+        session["search_results"] = search_listings(session["parsed"]["description"])
 
         if not session["search_results"]:
             session["error"] = "No listings available. Please try a different query."

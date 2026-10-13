@@ -24,7 +24,6 @@ import config  # noqa: F401 — you'll use this in search_listings
 from generate import generate
 from utils.data_loader import load_listings
 
-
 # ── Tool 1: search_listings ───────────────────────────────────────────────────
 
 def search_listings(
